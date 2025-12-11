@@ -129,13 +129,15 @@ export interface ProgressData {
  * Current view in the app
  */
 export type AppView =
+  | 'home'           // Main home screen (choose module)
   | 'library'        // Choose a passage
   | 'reading'        // Read the passage
   | 'retell'         // Retell activity
   | 'questions'      // Answer comprehension questions
   | 'celebration'    // Success screen after completion
   | 'parent-login'   // Parent password gate
-  | 'parent-panel';  // Parent management interface
+  | 'parent-panel'   // Parent management interface
+  | 'field-guide';   // Hyrule Field Guide module
 
 /**
  * Reading session state

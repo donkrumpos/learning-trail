@@ -1,6 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import type { AppView, ReadingSession, ProgressData, PassageCompletion, Passage } from './types';
 import { starterPassages } from './data/starterPassages';
+import { FieldGuide, loadFieldGuideProgress, saveFieldGuideProgress } from './components/FieldGuide';
+import { fieldGuideEntries } from './data/fieldGuideEntries';
 
 // ============================================================================
 // LOCALSTORAGE HELPERS
@@ -51,7 +53,7 @@ const PARENT_PASSWORD = 'dragon';
  * Main App Component
  */
 function App() {
-  const [currentView, setCurrentView] = useState<AppView>('library');
+  const [currentView, setCurrentView] = useState<AppView>('home');
   const [session, setSession] = useState<ReadingSession | null>(null);
   const [progress, setProgress] = useState<ProgressData>(loadProgress);
   const [customPassages, setCustomPassages] = useState<Passage[]>(loadCustomPassages);
@@ -61,6 +63,7 @@ function App() {
   const [feedbackCorrect, setFeedbackCorrect] = useState(false);
   const [parentPassword, setParentPassword] = useState('');
   const [parentError, setParentError] = useState('');
+  const [fieldGuideProgress, setFieldGuideProgress] = useState(loadFieldGuideProgress);
 
   // Retell activity state
   const [retellSelections, setRetellSelections] = useState<Record<string, string>>({});
@@ -213,6 +216,15 @@ function App() {
     0
   );
 
+  // If we're in Field Guide mode, render that component instead
+  if (currentView === 'field-guide') {
+    return (
+      <FieldGuide
+        onBack={() => setCurrentView('home')}
+      />
+    );
+  }
+
   return (
     <div className="min-h-screen bg-amber-50">
       {/* Header */}
@@ -222,13 +234,13 @@ function App() {
             className="text-3xl font-bold cursor-pointer"
             onClick={() => {
               stopSpeaking();
-              setCurrentView('library');
+              setCurrentView('home');
               setSession(null);
               setSelectedAnswer(null);
               setShowFeedback(false);
             }}
           >
-            Reading Companion
+            Learning Trail
           </h1>
           <button
             onClick={() => setCurrentView('parent-login')}
@@ -241,6 +253,58 @@ function App() {
 
       {/* Main Content Area */}
       <main className="max-w-4xl mx-auto p-6">
+
+        {/* ================================================================ */}
+        {/* HOME VIEW */}
+        {/* ================================================================ */}
+        {currentView === 'home' && (
+          <div className="text-center">
+            <h2 className="text-4xl font-bold text-gray-800 mb-4">
+              Welcome!
+            </h2>
+            <p className="text-xl text-gray-600 mb-8">
+              What would you like to do today?
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+              {/* Reading Trail Card */}
+              <div
+                onClick={() => setCurrentView('library')}
+                className="bg-white rounded-xl shadow-lg p-8 cursor-pointer hover:shadow-xl transition-shadow border-4 border-blue-200 hover:border-blue-400"
+              >
+                <div className="text-6xl mb-4">📚</div>
+                <h3 className="text-2xl font-bold text-blue-600 mb-2">
+                  Reading Trail
+                </h3>
+                <p className="text-gray-600">
+                  Read stories and learn new things!
+                </p>
+                {progress.totalPassagesRead > 0 && (
+                  <p className="text-sm text-blue-500 mt-2">
+                    {progress.totalPassagesRead} stories read
+                  </p>
+                )}
+              </div>
+
+              {/* Hyrule Field Guide Card */}
+              <div
+                onClick={() => setCurrentView('field-guide')}
+                className="bg-white rounded-xl shadow-lg p-8 cursor-pointer hover:shadow-xl transition-shadow border-4 border-emerald-200 hover:border-emerald-400"
+              >
+                <div className="text-6xl mb-4">🗺️</div>
+                <h3 className="text-2xl font-bold text-emerald-600 mb-2">
+                  Hyrule Field Guide
+                </h3>
+                <p className="text-gray-600">
+                  Discover creatures, items, and heroes!
+                </p>
+                <p className="text-sm text-emerald-500 mt-2">
+                  Sound & Reading Quests
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* ================================================================ */}
         {/* LIBRARY VIEW */}
@@ -272,9 +336,18 @@ function App() {
               </div>
             )}
 
-            <h2 className="text-4xl font-bold text-gray-800 mb-8 text-center">
-              Choose a Story!
-            </h2>
+            <div className="flex items-center justify-between mb-8">
+              <button
+                onClick={() => setCurrentView('home')}
+                className="bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 px-4 rounded-lg"
+              >
+                ← Home
+              </button>
+              <h2 className="text-4xl font-bold text-gray-800">
+                Choose a Story!
+              </h2>
+              <div className="w-24"></div> {/* Spacer for centering */}
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {allPassages.map((passage) => (
                 <div
@@ -868,6 +941,99 @@ function App() {
                   </div>
                 </div>
               )}
+            </div>
+
+            {/* Field Guide Progress */}
+            <div className="bg-white rounded-lg shadow-lg p-6">
+              <h3 className="text-xl font-bold text-gray-800 mb-4">
+                Hyrule Field Guide Progress
+              </h3>
+              {(() => {
+                const fgProgress = fieldGuideProgress;
+                const entriesUnlocked = Object.values(fgProgress.entries).filter(e => e.fullyUnlocked).length;
+                const imagesUnlocked = Object.values(fgProgress.entries).filter(e => e.imageUnlocked).length;
+                const totalEntries = fieldGuideEntries.length;
+                const phonemeAccuracy = fgProgress.phonemeProgress.totalAttempts > 0
+                  ? Math.round((fgProgress.phonemeProgress.correctAttempts / fgProgress.phonemeProgress.totalAttempts) * 100)
+                  : 0;
+                const readingAccuracy = fgProgress.readingProgress.totalQuestions > 0
+                  ? Math.round((fgProgress.readingProgress.correctAnswers / fgProgress.readingProgress.totalQuestions) * 100)
+                  : 0;
+
+                return (
+                  <>
+                    <div className="grid grid-cols-3 gap-4 text-center mb-4">
+                      <div className="bg-emerald-100 rounded-lg p-4">
+                        <div className="text-3xl font-bold text-emerald-600">{entriesUnlocked}/{totalEntries}</div>
+                        <div className="text-sm text-gray-600">Entries Unlocked</div>
+                      </div>
+                      <div className="bg-amber-100 rounded-lg p-4">
+                        <div className="text-3xl font-bold text-amber-600">{imagesUnlocked}/{totalEntries}</div>
+                        <div className="text-sm text-gray-600">Images Discovered</div>
+                      </div>
+                      <div className="bg-purple-100 rounded-lg p-4">
+                        <div className="text-3xl font-bold text-purple-600">
+                          {fgProgress.lastActivityDate || 'Never'}
+                        </div>
+                        <div className="text-sm text-gray-600">Last Activity</div>
+                      </div>
+                    </div>
+
+                    {/* Phoneme & Reading accuracy */}
+                    <div className="grid grid-cols-2 gap-4 text-center">
+                      <div className="bg-amber-50 rounded-lg p-3">
+                        <div className="text-2xl font-bold text-amber-700">{phonemeAccuracy}%</div>
+                        <div className="text-sm text-gray-600">Sound Quest Accuracy</div>
+                        <div className="text-xs text-gray-400">{fgProgress.phonemeProgress.totalAttempts} attempts</div>
+                      </div>
+                      <div className="bg-emerald-50 rounded-lg p-3">
+                        <div className="text-2xl font-bold text-emerald-700">{readingAccuracy}%</div>
+                        <div className="text-sm text-gray-600">Reading Quest Accuracy</div>
+                        <div className="text-xs text-gray-400">{fgProgress.readingProgress.totalQuestions} questions</div>
+                      </div>
+                    </div>
+
+                    {/* Entry breakdown */}
+                    {entriesUnlocked > 0 && (
+                      <div className="mt-4">
+                        <h4 className="font-bold text-gray-700 mb-2">Unlocked Entries:</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {fieldGuideEntries.map(entry => {
+                            const state = fgProgress.entries[entry.id];
+                            if (!state?.fullyUnlocked) return null;
+                            return (
+                              <span key={entry.id} className="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm">
+                                {entry.name}
+                              </span>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+                  </>
+                );
+              })()}
+
+              {/* Reset Field Guide button */}
+              <button
+                onClick={() => {
+                  if (confirm('Reset all Field Guide progress? This cannot be undone.')) {
+                    const freshProgress = {
+                      entries: Object.fromEntries(
+                        fieldGuideEntries.map(e => [e.id, { entryId: e.id, imageUnlocked: false, fullyUnlocked: false }])
+                      ),
+                      phonemeProgress: { totalAttempts: 0, correctAttempts: 0, wordAttempts: {} },
+                      readingProgress: { totalQuestions: 0, correctAnswers: 0, entriesCompleted: [] },
+                      lastActivityDate: '',
+                    };
+                    saveFieldGuideProgress(freshProgress);
+                    setFieldGuideProgress(freshProgress);
+                  }
+                }}
+                className="mt-4 bg-red-100 hover:bg-red-200 text-red-700 py-2 px-4 rounded-lg text-sm"
+              >
+                Reset Field Guide Progress
+              </button>
             </div>
 
             {/* Add New Passage */}
