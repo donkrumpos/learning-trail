@@ -194,7 +194,7 @@ export const fieldGuideEntries: FieldGuideEntry[] = [
     phonemeWords: [
       { word: 'glow', phonemes: ['g', 'l', 'ow'] },                  // 3 sounds
       { word: 'heal', phonemes: ['h', 'ea', 'l'] },                  // 3 sounds
-      { word: 'jar', phonemes: ['j', 'ar'] },                        // 2 sounds
+      { word: 'wish', phonemes: ['w', 'i', 'sh'] },                  // 3 sounds
       { word: 'pink', phonemes: ['p', 'i', 'n', 'k'] },              // 4 sounds
     ],
 
@@ -263,6 +263,172 @@ export const fieldGuideEntries: FieldGuideEntry[] = [
         feedback: {
           correct: 'Great thinking! You save the Fairy for when you need healing!',
           incorrect: 'The last sentence gives a hint about this.',
+        },
+      },
+    ],
+  },
+
+  {
+    id: 'octorok',
+    name: 'Octorok',
+    category: 'creature',
+    imageUrl: '/images/field-guide/octorok.png',
+
+    phonemeWords: [
+      { word: 'rock', phonemes: ['r', 'o', 'ck'] },                  // 3 sounds
+      { word: 'spit', phonemes: ['s', 'p', 'i', 't'] },              // 4 sounds
+      { word: 'hide', phonemes: ['h', 'ī', 'd'] },                   // 3 sounds
+      { word: 'red', phonemes: ['r', 'e', 'd'] },                    // 3 sounds
+    ],
+
+    passage: 'An Octorok is a small monster. It is red or blue. Octoroks spit rocks at Link. They can hide in the grass. Use your shield to block the rocks!',
+
+    vocabulary: ['Octorok', 'spit', 'shield', 'block'],
+
+    retellElements: [
+      { id: 'octo-what', category: 'what', text: 'A small rock-spitting monster', icon: '🐙' },
+      { id: 'octo-where', category: 'where', text: 'Hiding in grass', icon: '🌿' },
+      { id: 'octo-does', category: 'does', text: 'Spits rocks at Link', icon: '🪨' },
+    ],
+
+    comprehensionQuestions: [
+      {
+        id: 'octorok-q1',
+        type: 'literal',
+        text: 'What color can an Octorok be?',
+        choices: [
+          { id: 'a', text: 'Red or blue', icon: '🔴', isCorrect: true },
+          { id: 'b', text: 'Green or yellow', icon: '🟢', isCorrect: false },
+          { id: 'c', text: 'Black or white', icon: '⚫', isCorrect: false },
+        ],
+        feedback: {
+          correct: 'Yes! Octoroks can be red or blue!',
+          incorrect: 'The second sentence tells us the colors.',
+        },
+      },
+      {
+        id: 'octorok-q2',
+        type: 'literal',
+        text: 'What do Octoroks spit?',
+        choices: [
+          { id: 'a', text: 'Rocks', icon: '🪨', isCorrect: true },
+          { id: 'b', text: 'Water', icon: '💧', isCorrect: false },
+          { id: 'c', text: 'Fire', icon: '🔥', isCorrect: false },
+        ],
+        feedback: {
+          correct: 'That\'s right! Octoroks spit rocks!',
+          incorrect: 'What does the third sentence say they spit?',
+        },
+      },
+      {
+        id: 'octorok-q3',
+        type: 'vocabulary',
+        text: 'What does "block" mean?',
+        choices: [
+          { id: 'a', text: 'Stop something from hitting you', icon: '🛡️', isCorrect: true },
+          { id: 'b', text: 'Run away fast', icon: '🏃', isCorrect: false },
+          { id: 'c', text: 'Jump over', icon: '🦘', isCorrect: false },
+        ],
+        feedback: {
+          correct: 'Perfect! Block means to stop something from hitting you!',
+          incorrect: 'Think about what a shield does.',
+        },
+      },
+      {
+        id: 'octorok-q4',
+        type: 'inference',
+        text: 'Why do Octoroks hide in the grass?',
+        choices: [
+          { id: 'a', text: 'To surprise Link', icon: '😮', isCorrect: true },
+          { id: 'b', text: 'To sleep', icon: '😴', isCorrect: false },
+          { id: 'c', text: 'To eat', icon: '🍽️', isCorrect: false },
+        ],
+        feedback: {
+          correct: 'Good thinking! They hide to surprise Link and attack!',
+          incorrect: 'Think about why a monster would want to hide.',
+        },
+      },
+    ],
+  },
+
+  {
+    id: 'tektite',
+    name: 'Tektite',
+    category: 'creature',
+    imageUrl: '/images/field-guide/tektite.png',
+
+    phonemeWords: [
+      { word: 'jump', phonemes: ['j', 'u', 'm', 'p'] },              // 4 sounds
+      { word: 'leg', phonemes: ['l', 'e', 'g'] },                    // 3 sounds
+      { word: 'lake', phonemes: ['l', 'ā', 'k'] },                   // 3 sounds
+      { word: 'fast', phonemes: ['f', 'a', 's', 't'] },              // 4 sounds
+    ],
+
+    passage: 'A Tektite is a jumping bug. It has four long legs. Tektites hop around very fast. Some live near water. They are hard to hit because they jump so much!',
+
+    vocabulary: ['Tektite', 'hop', 'legs', 'hard'],
+
+    retellElements: [
+      { id: 'tek-what', category: 'what', text: 'A jumping bug monster', icon: '🦗' },
+      { id: 'tek-where', category: 'where', text: 'Near water and lakes', icon: '🌊' },
+      { id: 'tek-does', category: 'does', text: 'Hops around very fast', icon: '💨' },
+    ],
+
+    comprehensionQuestions: [
+      {
+        id: 'tektite-q1',
+        type: 'literal',
+        text: 'How many legs does a Tektite have?',
+        choices: [
+          { id: 'a', text: 'Four', icon: '4️⃣', isCorrect: true },
+          { id: 'b', text: 'Two', icon: '2️⃣', isCorrect: false },
+          { id: 'c', text: 'Eight', icon: '8️⃣', isCorrect: false },
+        ],
+        feedback: {
+          correct: 'Yes! Tektites have four long legs!',
+          incorrect: 'The second sentence tells us how many legs.',
+        },
+      },
+      {
+        id: 'tektite-q2',
+        type: 'literal',
+        text: 'How do Tektites move?',
+        choices: [
+          { id: 'a', text: 'They hop', icon: '🦘', isCorrect: true },
+          { id: 'b', text: 'They fly', icon: '🦋', isCorrect: false },
+          { id: 'c', text: 'They swim', icon: '🏊', isCorrect: false },
+        ],
+        feedback: {
+          correct: 'That\'s right! Tektites hop around!',
+          incorrect: 'What does the third sentence say they do?',
+        },
+      },
+      {
+        id: 'tektite-q3',
+        type: 'vocabulary',
+        text: 'What does "hop" mean?',
+        choices: [
+          { id: 'a', text: 'Jump from place to place', icon: '🐸', isCorrect: true },
+          { id: 'b', text: 'Walk slowly', icon: '🚶', isCorrect: false },
+          { id: 'c', text: 'Roll on the ground', icon: '⚽', isCorrect: false },
+        ],
+        feedback: {
+          correct: 'Perfect! Hop means to jump from place to place!',
+          incorrect: 'Think about how a frog or rabbit moves.',
+        },
+      },
+      {
+        id: 'tektite-q4',
+        type: 'inference',
+        text: 'Why are Tektites hard to hit?',
+        choices: [
+          { id: 'a', text: 'They jump and move too fast', icon: '💨', isCorrect: true },
+          { id: 'b', text: 'They are too small', icon: '🔍', isCorrect: false },
+          { id: 'c', text: 'They are invisible', icon: '👻', isCorrect: false },
+        ],
+        feedback: {
+          correct: 'Good thinking! They jump so much it\'s hard to hit them!',
+          incorrect: 'The last sentence gives us a hint.',
         },
       },
     ],
@@ -437,6 +603,172 @@ export const fieldGuideEntries: FieldGuideEntry[] = [
     ],
   },
 
+  {
+    id: 'sword',
+    name: 'Sword',
+    category: 'item',
+    imageUrl: '/images/field-guide/sword.png',
+
+    phonemeWords: [
+      { word: 'blade', phonemes: ['b', 'l', 'ā', 'd'] },             // 4 sounds
+      { word: 'cut', phonemes: ['c', 'u', 't'] },                    // 3 sounds
+      { word: 'swing', phonemes: ['s', 'w', 'i', 'ng'] },            // 4 sounds
+      { word: 'sharp', phonemes: ['sh', 'ar', 'p'] },                // 3 sounds
+    ],
+
+    passage: 'The Sword is Link\'s best weapon. It has a sharp blade. Link swings his sword to cut down enemies. Some swords shoot beams! The Master Sword is the strongest.',
+
+    vocabulary: ['sword', 'blade', 'weapon', 'beam'],
+
+    retellElements: [
+      { id: 'sword-what', category: 'what', text: 'A sharp weapon', icon: '⚔️' },
+      { id: 'sword-where', category: 'where', text: 'In Link\'s hand', icon: '✋' },
+      { id: 'sword-does', category: 'does', text: 'Cuts down enemies', icon: '💥' },
+    ],
+
+    comprehensionQuestions: [
+      {
+        id: 'sword-q1',
+        type: 'literal',
+        text: 'What does Link use his sword for?',
+        choices: [
+          { id: 'a', text: 'To cut down enemies', icon: '⚔️', isCorrect: true },
+          { id: 'b', text: 'To dig holes', icon: '🕳️', isCorrect: false },
+          { id: 'c', text: 'To cook food', icon: '🍳', isCorrect: false },
+        ],
+        feedback: {
+          correct: 'Yes! Link swings his sword to cut down enemies!',
+          incorrect: 'The third sentence tells us what Link does with his sword.',
+        },
+      },
+      {
+        id: 'sword-q2',
+        type: 'literal',
+        text: 'What is the strongest sword called?',
+        choices: [
+          { id: 'a', text: 'The Master Sword', icon: '🗡️', isCorrect: true },
+          { id: 'b', text: 'The Big Sword', icon: '⚔️', isCorrect: false },
+          { id: 'c', text: 'The Fire Sword', icon: '🔥', isCorrect: false },
+        ],
+        feedback: {
+          correct: 'That\'s right! The Master Sword is the strongest!',
+          incorrect: 'The last sentence tells us the name.',
+        },
+      },
+      {
+        id: 'sword-q3',
+        type: 'vocabulary',
+        text: 'What does "sharp" mean?',
+        choices: [
+          { id: 'a', text: 'Has an edge that can cut', icon: '🔪', isCorrect: true },
+          { id: 'b', text: 'Very heavy', icon: '🏋️', isCorrect: false },
+          { id: 'c', text: 'Makes loud sounds', icon: '📢', isCorrect: false },
+        ],
+        feedback: {
+          correct: 'Perfect! Sharp means it has an edge that can cut things!',
+          incorrect: 'Think about what a blade needs to be to cut.',
+        },
+      },
+      {
+        id: 'sword-q4',
+        type: 'inference',
+        text: 'Why would Link want the Master Sword?',
+        choices: [
+          { id: 'a', text: 'It\'s the strongest so it helps him win', icon: '🏆', isCorrect: true },
+          { id: 'b', text: 'It\'s the prettiest', icon: '✨', isCorrect: false },
+          { id: 'c', text: 'It\'s the lightest', icon: '🪶', isCorrect: false },
+        ],
+        feedback: {
+          correct: 'Good thinking! The strongest sword helps Link defeat tough enemies!',
+          incorrect: 'Why would a hero want the strongest weapon?',
+        },
+      },
+    ],
+  },
+
+  {
+    id: 'bomb',
+    name: 'Bomb',
+    category: 'item',
+    imageUrl: '/images/field-guide/bomb.png',
+
+    phonemeWords: [
+      { word: 'blast', phonemes: ['b', 'l', 'a', 's', 't'] },        // 5 sounds
+      { word: 'boom', phonemes: ['b', 'oo', 'm'] },                  // 3 sounds
+      { word: 'wall', phonemes: ['w', 'a', 'l'] },                   // 3 sounds
+      { word: 'throw', phonemes: ['th', 'r', 'ow'] },                // 3 sounds
+    ],
+
+    passage: 'A Bomb goes boom! It can blast through walls. Link can throw bombs at enemies. Be careful! Bombs explode after a few seconds. Run away before it goes off!',
+
+    vocabulary: ['bomb', 'blast', 'explode', 'throw'],
+
+    retellElements: [
+      { id: 'bomb-what', category: 'what', text: 'An exploding tool', icon: '💣' },
+      { id: 'bomb-where', category: 'where', text: 'In Link\'s bag', icon: '🎒' },
+      { id: 'bomb-does', category: 'does', text: 'Blasts through walls', icon: '💥' },
+    ],
+
+    comprehensionQuestions: [
+      {
+        id: 'bomb-q1',
+        type: 'literal',
+        text: 'What can a Bomb blast through?',
+        choices: [
+          { id: 'a', text: 'Walls', icon: '🧱', isCorrect: true },
+          { id: 'b', text: 'Water', icon: '💧', isCorrect: false },
+          { id: 'c', text: 'Air', icon: '💨', isCorrect: false },
+        ],
+        feedback: {
+          correct: 'Yes! Bombs can blast through walls!',
+          incorrect: 'The second sentence tells us what bombs blast through.',
+        },
+      },
+      {
+        id: 'bomb-q2',
+        type: 'literal',
+        text: 'What should you do after throwing a bomb?',
+        choices: [
+          { id: 'a', text: 'Run away', icon: '🏃', isCorrect: true },
+          { id: 'b', text: 'Stand still', icon: '🧍', isCorrect: false },
+          { id: 'c', text: 'Pick it up', icon: '✋', isCorrect: false },
+        ],
+        feedback: {
+          correct: 'That\'s right! Run away before it explodes!',
+          incorrect: 'The last sentence tells us what to do.',
+        },
+      },
+      {
+        id: 'bomb-q3',
+        type: 'vocabulary',
+        text: 'What does "explode" mean?',
+        choices: [
+          { id: 'a', text: 'Blow up with a big bang', icon: '💥', isCorrect: true },
+          { id: 'b', text: 'Melt slowly', icon: '🫠', isCorrect: false },
+          { id: 'c', text: 'Float away', icon: '🎈', isCorrect: false },
+        ],
+        feedback: {
+          correct: 'Perfect! Explode means to blow up with a big bang!',
+          incorrect: 'Think about what "boom" sounds like.',
+        },
+      },
+      {
+        id: 'bomb-q4',
+        type: 'inference',
+        text: 'Why would Link use a bomb on a wall?',
+        choices: [
+          { id: 'a', text: 'To make a new path or find secrets', icon: '🚪', isCorrect: true },
+          { id: 'b', text: 'To paint it', icon: '🎨', isCorrect: false },
+          { id: 'c', text: 'To climb it', icon: '🧗', isCorrect: false },
+        ],
+        feedback: {
+          correct: 'Good thinking! Blasting walls can reveal hidden paths and secrets!',
+          incorrect: 'If you blast through a wall, what happens?',
+        },
+      },
+    ],
+  },
+
   // ========================================================================
   // CHARACTERS
   // ========================================================================
@@ -518,6 +850,172 @@ export const fieldGuideEntries: FieldGuideEntry[] = [
         feedback: {
           correct: 'Yes! Link saves Princess Zelda and all of Hyrule!',
           incorrect: 'The last two sentences tell us who Link saves.',
+        },
+      },
+    ],
+  },
+
+  {
+    id: 'darknut',
+    name: 'Darknut',
+    category: 'creature',
+    imageUrl: '/images/field-guide/darknut.png',
+
+    phonemeWords: [
+      { word: 'knight', phonemes: ['n', 'ī', 't'] },                 // 3 sounds (silent k)
+      { word: 'armor', phonemes: ['ar', 'm', 'er'] },                // 3 sounds
+      { word: 'strong', phonemes: ['s', 't', 'r', 'o', 'ng'] },      // 5 sounds
+      { word: 'slow', phonemes: ['s', 'l', 'ow'] },                  // 3 sounds
+    ],
+
+    passage: 'A Darknut is a knight in armor. It is very strong. Darknuts carry big swords. They move slow but hit hard. Attack from behind to beat them!',
+
+    vocabulary: ['Darknut', 'knight', 'armor', 'attack'],
+
+    retellElements: [
+      { id: 'dark-what', category: 'what', text: 'A knight in armor', icon: '🛡️' },
+      { id: 'dark-where', category: 'where', text: 'In dungeons', icon: '🏰' },
+      { id: 'dark-does', category: 'does', text: 'Swings a big sword', icon: '⚔️' },
+    ],
+
+    comprehensionQuestions: [
+      {
+        id: 'darknut-q1',
+        type: 'literal',
+        text: 'What does a Darknut wear?',
+        choices: [
+          { id: 'a', text: 'Armor', icon: '🛡️', isCorrect: true },
+          { id: 'b', text: 'A cape', icon: '🧥', isCorrect: false },
+          { id: 'c', text: 'Nothing', icon: '❌', isCorrect: false },
+        ],
+        feedback: {
+          correct: 'Yes! A Darknut is a knight in armor!',
+          incorrect: 'The first sentence tells us what it wears.',
+        },
+      },
+      {
+        id: 'darknut-q2',
+        type: 'literal',
+        text: 'How do Darknuts move?',
+        choices: [
+          { id: 'a', text: 'Slow', icon: '🐢', isCorrect: true },
+          { id: 'b', text: 'Fast', icon: '💨', isCorrect: false },
+          { id: 'c', text: 'They fly', icon: '🦅', isCorrect: false },
+        ],
+        feedback: {
+          correct: 'That\'s right! Darknuts move slow but hit hard!',
+          incorrect: 'The fourth sentence tells us how they move.',
+        },
+      },
+      {
+        id: 'darknut-q3',
+        type: 'vocabulary',
+        text: 'What is "armor"?',
+        choices: [
+          { id: 'a', text: 'Metal clothes that protect you', icon: '🛡️', isCorrect: true },
+          { id: 'b', text: 'A type of weapon', icon: '⚔️', isCorrect: false },
+          { id: 'c', text: 'A kind of food', icon: '🍖', isCorrect: false },
+        ],
+        feedback: {
+          correct: 'Perfect! Armor is metal clothes that protect you in battle!',
+          incorrect: 'Think about what knights wear to stay safe.',
+        },
+      },
+      {
+        id: 'darknut-q4',
+        type: 'inference',
+        text: 'Why should you attack a Darknut from behind?',
+        choices: [
+          { id: 'a', text: 'The armor doesn\'t protect its back', icon: '🎯', isCorrect: true },
+          { id: 'b', text: 'It can\'t hear you', icon: '👂', isCorrect: false },
+          { id: 'c', text: 'It\'s sleeping', icon: '😴', isCorrect: false },
+        ],
+        feedback: {
+          correct: 'Good thinking! The armor is weaker from behind!',
+          incorrect: 'Think about where armor might not protect.',
+        },
+      },
+    ],
+  },
+
+  {
+    id: 'oldman',
+    name: 'Old Man',
+    category: 'character',
+    imageUrl: '/images/field-guide/oldman.png',
+
+    phonemeWords: [
+      { word: 'cave', phonemes: ['k', 'ā', 'v'] },                   // 3 sounds
+      { word: 'hint', phonemes: ['h', 'i', 'n', 't'] },              // 4 sounds
+      { word: 'help', phonemes: ['h', 'e', 'l', 'p'] },              // 4 sounds
+      { word: 'gift', phonemes: ['g', 'i', 'f', 't'] },              // 4 sounds
+    ],
+
+    passage: 'The Old Man lives in a cave. He gives Link his first sword. The Old Man shares wise hints. "It\'s dangerous to go alone!" he says. He helps Link start his quest.',
+
+    vocabulary: ['cave', 'hint', 'dangerous', 'quest'],
+
+    retellElements: [
+      { id: 'old-what', category: 'what', text: 'A wise helper', icon: '🧙' },
+      { id: 'old-where', category: 'where', text: 'In a cave', icon: '🕳️' },
+      { id: 'old-does', category: 'does', text: 'Gives Link his first sword', icon: '⚔️' },
+    ],
+
+    comprehensionQuestions: [
+      {
+        id: 'oldman-q1',
+        type: 'literal',
+        text: 'Where does the Old Man live?',
+        choices: [
+          { id: 'a', text: 'In a cave', icon: '🕳️', isCorrect: true },
+          { id: 'b', text: 'In a castle', icon: '🏰', isCorrect: false },
+          { id: 'c', text: 'In a tree', icon: '🌳', isCorrect: false },
+        ],
+        feedback: {
+          correct: 'Yes! The Old Man lives in a cave!',
+          incorrect: 'The first sentence tells us where he lives.',
+        },
+      },
+      {
+        id: 'oldman-q2',
+        type: 'literal',
+        text: 'What does the Old Man give Link?',
+        choices: [
+          { id: 'a', text: 'His first sword', icon: '⚔️', isCorrect: true },
+          { id: 'b', text: 'A map', icon: '🗺️', isCorrect: false },
+          { id: 'c', text: 'Food', icon: '🍖', isCorrect: false },
+        ],
+        feedback: {
+          correct: 'That\'s right! The Old Man gives Link his first sword!',
+          incorrect: 'The second sentence tells us what he gives.',
+        },
+      },
+      {
+        id: 'oldman-q3',
+        type: 'vocabulary',
+        text: 'What is a "hint"?',
+        choices: [
+          { id: 'a', text: 'A clue to help you figure something out', icon: '💡', isCorrect: true },
+          { id: 'b', text: 'A type of weapon', icon: '⚔️', isCorrect: false },
+          { id: 'c', text: 'A kind of monster', icon: '👹', isCorrect: false },
+        ],
+        feedback: {
+          correct: 'Perfect! A hint is a clue that helps you figure something out!',
+          incorrect: 'Think about what helps you solve a puzzle.',
+        },
+      },
+      {
+        id: 'oldman-q4',
+        type: 'inference',
+        text: 'Why does the Old Man say "It\'s dangerous to go alone"?',
+        choices: [
+          { id: 'a', text: 'He wants Link to take the sword for protection', icon: '🛡️', isCorrect: true },
+          { id: 'b', text: 'He wants to come with Link', icon: '🚶', isCorrect: false },
+          { id: 'c', text: 'He is scared of Link', icon: '😨', isCorrect: false },
+        ],
+        feedback: {
+          correct: 'Good thinking! The Old Man gives Link a sword so he can protect himself!',
+          incorrect: 'Think about why someone would give you a weapon.',
         },
       },
     ],
